@@ -173,18 +173,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         }}
       >
         {/* TOP MAIN ROW */}
-        <div
-          style={{
-            width: '100%',
-            maxWidth: '1680px',
-            margin: '0 auto',
-            height: '62px',
-            padding: '0 2rem',
-            display: 'grid',
-            gridTemplateColumns: '1fr auto 1fr',
-            alignItems: 'center',
-          }}
-        >
+        <div className="ck-header-inner">
           {/* ===============================================================
               LEFT SECTION: Search Icon + Navigation Links (SHOP, NEW IN, ...)
              =============================================================== */}
@@ -296,25 +285,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }
             }}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer',
-              userSelect: 'none',
-            }}
+            className="ck-brand-container"
           >
-            <span
-              style={{
-                fontFamily: 'var(--font-sans)',
-                fontSize: '1.28rem',
-                fontWeight: 800,
-                letterSpacing: '0.22em',
-                color: 'var(--text-primary)',
-                textTransform: 'uppercase',
-                lineHeight: 1,
-              }}
-            >
+            <span className="ck-brand-title">
               Agung Citra Sukses Abadi
             </span>
           </div>
@@ -322,14 +295,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* ===============================================================
               RIGHT SECTION: Admin, Theme, Wishlist, Bag, User, Region Pill
              =============================================================== */}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'flex-end',
-              gap: '1.25rem',
-            }}
-          >
+          <div className="ck-header-right">
 
             {/* Direct Admin Access Button - only for ADMIN role */}
             {currentUser?.role === 'ADMIN' && (
@@ -613,7 +579,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
 
             {/* Language / Region Pill Button */}
-            <div style={{ position: 'relative' }}>
+            <div style={{ position: 'relative' }} className="ck-region-pill">
               <button
                 onClick={() => setIsRegionOpen(!isRegionOpen)}
                 style={{

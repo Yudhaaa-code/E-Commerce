@@ -106,12 +106,12 @@ const HeroSection = React.forwardRef<HTMLElement, HeroSectionProps>(
       >
         {/* Left Side: Content */}
         <div
-          className="hero-section-content flex w-full flex-col justify-between p-8 md:w-1/2 md:p-12 lg:w-3/5 lg:p-16"
+          className="hero-section-content flex w-full flex-col justify-between md:w-1/2 lg:w-3/5"
           style={{
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
-            padding: 'clamp(2.5rem, 5vw, 5.5rem)',
+            padding: 'clamp(1.5rem, 4vw, 4.5rem)',
             zIndex: 2,
           }}
         >
@@ -161,13 +161,13 @@ const HeroSection = React.forwardRef<HTMLElement, HeroSectionProps>(
 
                 <motion.main variants={containerVariants}>
                     <motion.h1
-                      className="text-4xl font-bold leading-tight text-foreground md:text-5xl"
+                      className="font-bold leading-tight text-foreground"
                       variants={itemVariants}
                       style={{
                         fontFamily: 'var(--font-serif)',
-                        fontSize: 'clamp(2.3rem, 4.8vw, 4rem)',
+                        fontSize: 'clamp(1.75rem, 5vw, 3.8rem)',
                         fontWeight: 600,
-                        lineHeight: 1.14,
+                        lineHeight: 1.16,
                         letterSpacing: '-0.02em',
                         color: 'var(--text-primary)',
                         margin: 0,
@@ -246,9 +246,6 @@ const HeroSection = React.forwardRef<HTMLElement, HeroSectionProps>(
                 <div
                   className="hero-contact-strip"
                   style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
-                    gap: '1.25rem',
                     fontSize: '0.8rem',
                     color: 'var(--text-secondary)',
                   }}
@@ -257,10 +254,13 @@ const HeroSection = React.forwardRef<HTMLElement, HeroSectionProps>(
                         <InfoIcon type="website" />
                         <span style={{ fontWeight: 500 }}>{contactInfo.website}</span>
                     </div>
-                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <a
+                      href={`tel:${contactInfo.phone.replace(/[^0-9+]/g, '')}`}
+                      style={{ display: 'flex', alignItems: 'center', color: 'inherit', textDecoration: 'none' }}
+                    >
                         <InfoIcon type="phone" />
                         <span style={{ fontWeight: 500 }}>{contactInfo.phone}</span>
-                    </div>
+                    </a>
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                         <InfoIcon type="address" />
                         <span style={{ fontWeight: 500 }}>{contactInfo.address}</span>
