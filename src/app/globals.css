@@ -1,0 +1,469 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap');
+
+:root {
+  /* Warm Minimalist Editorial Palette (Default) */
+  --bg-primary: #FAF9F5;
+  --bg-secondary: #FFFFFF;
+  --bg-tertiary: #F3F1EB;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #FFFFFF;
+  --border-subtle: #E8E6DF;
+  --border-glow: rgba(20, 20, 20, 0.12);
+
+  --text-primary: #151618;
+  --text-secondary: #57564F;
+  --text-muted: #8C8A82;
+
+  --accent-primary: #151618;
+  --accent-primary-hover: #2B2C30;
+  --accent-gradient: #151618;
+  --accent-gradient-subtle: #F3F1EB;
+  
+  --amber-accent: #7A480D;
+  --amber-soft-bg: #FAF2E6;
+  --emerald-accent: #2A582F;
+  --emerald-soft-bg: #EDF3EC;
+  --rose-accent: #9B2C2C;
+  --rose-soft-bg: #FDF0F0;
+  --purple-accent: #6B3E74;
+  --purple-soft-bg: #F6F1F7;
+
+  --glass-bg: rgba(250, 249, 245, 0.88);
+  --glass-border: rgba(0, 0, 0, 0.07);
+  --glass-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: var(--font-serif);
+
+  --transition-fast: 0.15s ease;
+  --transition-smooth: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fluid: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-haptic: 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+[data-theme="dark"] {
+  --bg-primary: #0E1014;
+  --bg-secondary: #14171D;
+  --bg-tertiary: #1B1E26;
+  --bg-card: #14171D;
+  --bg-card-hover: #181C24;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-glow: rgba(255, 255, 255, 0.2);
+
+  --text-primary: #F7F6F2;
+  --text-secondary: #A09F98;
+  --text-muted: #6E6D67;
+
+  --accent-primary: #F7F6F2;
+  --accent-primary-hover: #E2E0D8;
+  --accent-gradient: #F7F6F2;
+  --accent-gradient-subtle: #1B1E26;
+
+  --amber-accent: #E0A84D;
+  --amber-soft-bg: rgba(224, 168, 77, 0.12);
+  --emerald-accent: #5CC275;
+  --emerald-soft-bg: rgba(92, 194, 117, 0.12);
+  --rose-accent: #F87171;
+  --rose-soft-bg: rgba(248, 113, 113, 0.14);
+  --purple-accent: #C084FC;
+  --purple-soft-bg: rgba(192, 132, 252, 0.14);
+
+  --glass-bg: rgba(14, 16, 20, 0.88);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  letter-spacing: -0.015em;
+  font-weight: 600;
+}
+
+/* Custom Minimalist Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: #DDD9D0;
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B8B5AC;
+}
+
+/* Base Layout Container (Full Width Responsive) */
+.container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0 clamp(1.5rem, 3.5vw, 4rem);
+}
+
+/* Ambient Subtle Texture Spots (Ultra-low opacity for depth) */
+.ambient-glow {
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  filter: blur(160px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.035;
+}
+.ambient-glow-1 {
+  top: -100px;
+  left: 20%;
+  background: #8A6430;
+}
+.ambient-glow-2 {
+  top: 40%;
+  right: -100px;
+  background: #3A4E3B;
+}
+
+/* Minimalist Clean Frame (Gallery Cards) */
+.gallery-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  transition: all var(--transition-smooth);
+}
+.gallery-card:hover {
+  border-color: #D3D0C6;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+  transform: translateY(-2px);
+}
+
+/* Double-Bezel Architectural Frame for Minimalist Masterpiece */
+.double-bezel-shell {
+  padding: 4px;
+  border-radius: 14px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  transition: all var(--transition-smooth);
+}
+.double-bezel-shell:hover {
+  border-color: var(--border-glow);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+.double-bezel-core {
+  border-radius: 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Eyebrow Editorial Tag */
+.eyebrow-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  background: var(--amber-soft-bg);
+  color: var(--amber-accent);
+  border: 1px solid rgba(122, 72, 13, 0.15);
+}
+
+/* Minimalist Button-in-Button CTA */
+.btn-nested-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem;
+  padding: 0.5rem 0.6rem 0.5rem 1.25rem;
+  border-radius: var(--radius-sm);
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: 1px solid var(--accent-primary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+.btn-nested-cta:hover {
+  background: var(--accent-primary-hover);
+  border-color: var(--accent-primary-hover);
+  transform: translateY(-1px);
+}
+.btn-nested-cta:active {
+  transform: scale(0.98);
+}
+.btn-nested-cta .icon-bubble {
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  background: rgba(120, 120, 120, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-fast);
+  color: var(--bg-primary);
+}
+.btn-nested-cta:hover .icon-bubble {
+  transform: translateX(2px);
+}
+
+/* Standard Minimalist Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.875rem;
+  padding: 0.6rem 1.15rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+  border-color: var(--accent-primary);
+}
+.btn-primary:hover:not(:disabled) {
+  background: var(--accent-primary-hover);
+  border-color: var(--accent-primary-hover);
+}
+
+.btn-secondary {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+}
+.btn-secondary:hover:not(:disabled) {
+  background: var(--bg-tertiary);
+  border-color: var(--border-glow);
+}
+
+.btn-icon {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+}
+.btn-icon:hover {
+  background: var(--bg-tertiary);
+  border-color: var(--border-glow);
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-sm);
+}
+.badge-accent {
+  background: var(--amber-soft-bg);
+  color: var(--amber-accent);
+  border: 1px solid rgba(122, 72, 13, 0.15);
+}
+.badge-emerald {
+  background: var(--emerald-soft-bg);
+  color: var(--emerald-accent);
+  border: 1px solid rgba(42, 88, 47, 0.15);
+}
+
+/* Minimalist Form Controls */
+.input-control {
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  padding: 0.65rem 0.95rem;
+  border-radius: var(--radius-sm);
+  outline: none;
+  transition: all var(--transition-fast);
+}
+.input-control:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 2px var(--border-glow);
+}
+
+/* Price Display */
+.price-tag {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.price-strike {
+  text-decoration: line-through;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+/* ==========================================================================
+   Hero Section 2 Split Screen Utilities & Responsive Styling
+   ========================================================================== */
+.hero-section-root {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 72px);
+  overflow: hidden;
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+@media (min-width: 900px) {
+  .hero-section-root {
+    flex-direction: row !important;
+    min-height: calc(100vh - 72px) !important;
+  }
+  .hero-section-content {
+    flex: 1 1 54% !important;
+    max-width: 54% !important;
+    padding: clamp(3rem, 6vw, 6rem) clamp(2.5rem, 6vw, 6rem) !important;
+  }
+  .hero-section-image {
+    flex: 1 1 46% !important;
+    min-height: 100% !important;
+    height: auto !important;
+  }
+}
+
+@media (max-width: 899px) {
+  .hero-section-root {
+    flex-direction: column !important;
+    min-height: auto !important;
+  }
+  .hero-section-content {
+    width: 100% !important;
+    padding: 3.5rem 1.5rem 2.5rem 1.5rem !important;
+  }
+  .hero-section-image {
+    width: 100% !important;
+    min-height: 380px !important;
+    clip-path: none !important;
+  }
+}
+
+/* Contact Info Strip Inside Hero */
+.hero-contact-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+/* Shadcn / Utility Fallbacks */
+.bg-background {
+  background-color: var(--bg-secondary);
+}
+.text-foreground {
+  color: var(--text-primary);
+}
+.text-muted-foreground {
+  color: var(--text-secondary);
+}
+.text-primary {
+  color: var(--accent-primary);
+}
+.bg-primary {
+  background-color: var(--accent-primary);
+}
+
+/* ==========================================================================
+   Charles & Keith Luxury Navigation Responsive Styles
+   ========================================================================== */
+.ck-mobile-trigger {
+  display: none !important;
+}
+
+.ck-desktop-nav {
+  display: flex !important;
+}
+
+@media (max-width: 960px) {
+  .ck-mobile-trigger {
+    display: flex !important;
+  }
+  .ck-desktop-nav {
+    display: none !important;
+  }
+}
+
+/* Google Translate Stealth Integration */
+.goog-te-banner-frame.skiptranslate,
+.goog-te-banner-frame,
+iframe.goog-te-banner-frame {
+  display: none !important;
+}
+body {
+  top: 0px !important;
+}
+#google_translate_element {
+  display: none !important;
+}
+.skiptranslate:not(.allow-display) {
+  display: none !important;
+}
+.goog-tooltip, .goog-tooltip:hover {
+  display: none !important;
+}
+.goog-text-highlight {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+font {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+
+
